@@ -3,7 +3,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
     static associate(models) {
-      // Product memiliki banyak CartItem (One-to-Many)
+      // Relasi ke CartItem (One-to-Many)
       Product.hasMany(models.CartItem, { foreignKey: "product_id", onDelete: "CASCADE" });
     }
   }

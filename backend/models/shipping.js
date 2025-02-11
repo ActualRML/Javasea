@@ -4,10 +4,10 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Shipping extends Model {
     static associate(models) {
-      // Relasi ke ShippingHistory (One-to-Many: Satu Shipping bisa punya banyak ShippingHistory)
+      // Relasi ke ShippingHistory (One-to-Many)
       Shipping.hasMany(models.ShippingHistory, { foreignKey: "shipping_id" });
 
-      // Relasi ke Order (Many-to-One: Banyak Shipping bisa punya satu Order)
+      // Relasi ke Order (Many-to-One)
       Shipping.belongsTo(models.Order, { foreignKey: "order_id" });
     }
   }
@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "Orders",  // Nama tabel yang sesuai di database, pastikan ini benar
-          key: "order_id",  // Kolom yang sesuai di tabel "Orders"
+          model: "Orders",  
+          key: "order_id",  
         },
       },
       shipping_address: {

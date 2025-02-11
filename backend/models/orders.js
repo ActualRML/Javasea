@@ -4,8 +4,13 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Order extends Model {
     static associate(models) {
+      // Relasi ke OrderHistory (One-to-Many)
       Order.hasMany(models.OrderHistory, { foreignKey: "order_id" });
+
+      // Relasi ke User (Many-to-One)
       Order.belongsTo(models.User, { foreignKey: "user_id" });
+
+      // Relasi ke OrderItem (One-to-Many)
       Order.hasMany(models.OrderItem, { foreignKey: "order_id", as: "items" });
     }
   }

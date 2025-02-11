@@ -1,7 +1,12 @@
 const { Model, DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
-  class User extends Model {}
+  class User extends Model {
+    static associate(models) {
+      // Relasi ke Order (One-to-Many)
+      User.hasMany(models.Order, { foreignKey: "user_id", onDelete: "CASCADE" });
+    }
+  }
 
   User.init(
     {

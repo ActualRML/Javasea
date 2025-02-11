@@ -4,6 +4,7 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class ShippingHistory extends Model {
     static associate(models) {
+      // Relasi ke Shipping (Many-to-One)
       ShippingHistory.belongsTo(models.Shipping, { foreignKey: "shipping_id" });
     }
   }
